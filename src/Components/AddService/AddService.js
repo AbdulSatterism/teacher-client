@@ -1,11 +1,25 @@
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 
 const AddService = () => {
     const [service, setService] = useState({});
 
     const handleSubmit = event => {
         event.preventDefault()
-        console.log(service)
+        fetch('http://localhost:5000/services', {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(service)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    toast.success('Service added successfully');
+                    event.target.reset()
+                }
+            })
     }
 
     const handleOnBlur = event => {
@@ -39,7 +53,7 @@ const AddService = () => {
             </label>
             <textarea onBlur={handleOnBlur} name='details' placeholder="Enter Service Details" required className="textarea textarea-bordered textarea-md w-full" ></textarea>
             <br />
-            <button type="submit" className='btn w-1/3 font-bold flex mx-auto justify-center'>Add Service</button>
+            <button type="submit" className='btn w-1/3 font-bold flex mx-auto justify-center bg-cyan-500'>Add Service</button>
         </form>
 
     );
