@@ -1,15 +1,42 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Components/context/AuthProvider/AuthProvider';
 
 const SignUp = () => {
+    const { signupUser, updateUserProfile } = useContext(AuthContext);
+    const [error, setError] = useState('');
 
     const handleSignup = event => {
         event.preventDefault();
         const form = event.target;
         const name = form.name.value;
+        const photo = form.photo.value;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password, name)
+        signupUser(email, password)
+            .then((result) => {
+                const user = result.user;
+                handleUpdateUser(name, photo);
+                console.log(user);
+                form.reset();
+                setError('');
+            })
+            .catch((err) => {
+                const errorMessage = err.message;
+                setError(errorMessage)
+            });
+    }
+
+    const handleUpdateUser = (name, photo) => {
+        const profile = {
+            displayName: name,
+            photoURL: photo
+        };
+        updateUserProfile(profile)
+            .then(() => { })
+            .catch(err => {
+                setError(err.message)
+            })
     }
 
     return (
@@ -22,6 +49,12 @@ const SignUp = () => {
                             <span className="label-text">Name</span>
                         </label>
                         <input type="text" name='name' required placeholder="name" className="input input-bordered" />
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">photoURL</span>
+                        </label>
+                        <input type="url" name='photo' placeholder="photoURL" className="input input-bordered" />
                     </div>
 
                     <div className="form-control">
@@ -43,7 +76,10 @@ const SignUp = () => {
                         <button type="submit" className='btn bg-cyan-500'>Login</button>
                     </div>
                     <p className='text-center'>All ready have an account? <Link className='text-orange-600 font-bold ' to='/login'>Login</Link> </p>
+
+                    <p className='text-center text-orange-600' >{error}</p>
                 </div>
+
             </div>
         </form>
 

@@ -4,7 +4,14 @@ import logo from '../../Images/Logo/logo.png'
 import { AuthContext } from '../../Components/context/AuthProvider/AuthProvider';
 
 const Header = () => {
-    const { user } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
+
+    const handleLogOut = () => {
+
+        logOut()
+            .then(() => { })
+            .catch(() => { })
+    }
 
     const navItems = <>
         <li className='font-semibold '><Link to='/'>Home</Link></li>
@@ -12,8 +19,19 @@ const Header = () => {
         <li className='font-semibold '><Link to='/contact'>Contact</Link></li>
         <li className='font-semibold '><Link to='/addservice'>AddService</Link></li>
         <li className='font-semibold '><Link to='/review'>Review</Link></li>
-        <li className='font-semibold '><Link to='/login'>Login</Link></li>
-        <li className='font-semibold '><Link to='/login'>{user?.name}</Link></li>
+        {
+            user?.uid ?
+                <>
+
+                    <li onClick={handleLogOut} className='font-semibold '><Link>Sign Out</Link></li>
+                    <li className='font-semibold '><Link>{user?.displayName}</Link></li>
+                </>
+                :
+                <>
+                    <li className='font-semibold '><Link to='/login'>Login</Link></li>
+                </>
+
+        }
     </>
 
 

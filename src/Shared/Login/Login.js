@@ -1,14 +1,32 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../Components/context/AuthProvider/AuthProvider';
 
 const Login = () => {
+    const { signinUser, setLoading } = useContext(AuthContext);
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
     const handleLogin = event => {
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password)
+        signinUser(email, password)
+            .then((result) => {
+                console.log(result.user);
+                setError('');
+                form.reset()
+                navigate(from, { replace: true });
+            })
+            .catch(err => {
+                setError(err.message);
+            })
+            .finally(() => {
+                setLoading(false)
+            })
     }
 
     return (
@@ -36,6 +54,8 @@ const Login = () => {
                         <button type="submit" className='btn bg-cyan-500'>Login</button>
                     </div>
                     <p className='text-center'>New User <Link className='text-orange-600 font-bold ' to='/signup'>Sign up</Link> </p>
+
+                    <p className='text-center text-orange-600' >{error}</p>
                 </div>
             </div>
         </form>
