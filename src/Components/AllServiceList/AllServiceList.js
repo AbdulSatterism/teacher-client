@@ -24,7 +24,10 @@ const AllServiceList = ({ service }) => {
                     }
                 </p>
                 <div className="justify-between card-actions">
-                    <button className='btn bg-cyan-500'>Enroll Now<FaShoppingCart></FaShoppingCart> </button>
+                    <Link to={`/booking/${_id}`}>
+                        <button className='btn bg-cyan-500'>Enroll Now<FaShoppingCart></FaShoppingCart> </button>
+                    </Link>
+
                     <Link to={`/details/${_id}`}>
                         <button className='btn bg-cyan-500'>Details <FaAngleRight></FaAngleRight> </button>
                     </Link>

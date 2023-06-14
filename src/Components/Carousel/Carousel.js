@@ -1,39 +1,18 @@
 import React from 'react';
-import math from '../../Images/bookImage/math2.jpg'
-import physics from '../../Images/bookImage/physics2.png'
-import chemistry from '../../Images/bookImage/chemistry.jpg';
-import CarouselItem from './CarouselItem';
+import teacher from '../../Images/teacher/teacher.png'
+
 
 const Carousel = () => {
-    const items = [
-        {
-            image: physics,
-            prev: 3,
-            id: 1,
-            next: 2
-        },
-        {
-            image: chemistry,
-            prev: 1,
-            id: 2,
-            next: 3
-        },
-        {
-            image: math,
-            prev: 2,
-            id: 3,
-            next: 1
-        }
-    ]
+
     return (
-        <div>
-            <div className="w-full h-screen py-10 carousel">
-                {
-                    items.map(slide => <CarouselItem
-                        key={slide.id}
-                        slide={slide}
-                    ></CarouselItem>)
-                }
+        <div className="hero hero-content h-screen flex-col lg:flex-row-reverse bg-gradient-to-r from-sky-100 to-indigo-400 p-4">
+            <div className='w-1/2 '>
+                <img src={teacher} className="" alt='' />
+            </div>
+            <div className='w-1/2'>
+                <h1 className="text-5xl font-bold">Welcome To My <br /> <span className='text-orange-500'>Private Zone</span></h1>
+                <p className="py-6">Teaching is my favorite occupation i teach my subject with pleasure and enjoyable. I share my knowledge with students. </p>
+                <button className="btn btn-primary">Explore more</button>
             </div>
         </div>
     );

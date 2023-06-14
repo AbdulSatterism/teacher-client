@@ -75,7 +75,7 @@ const SignUp = () => {
                     <div className="form-control mt-6">
                         <button type="submit" className='btn bg-cyan-500'>Login</button>
                     </div>
-                    <p className='text-center'>All ready have an account? <Link className='text-orange-600 font-bold ' to='/login'>Login</Link> </p>
+                    <p className='text-center'>All ready have an account? <Link className='text-orange-600 font-bold ' to='/login'>Sign Up</Link> </p>
 
                     <p className='text-center text-orange-600' >{error}</p>
                 </div>

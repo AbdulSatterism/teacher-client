@@ -15,7 +15,7 @@ const Header = () => {
 
     const navItems = <>
         <li className='font-semibold '><Link to='/'>Home</Link></li>
-        <li className='font-semibold '><Link to='/blogs'>Blogs</Link></li>
+        <li className='font-semibold '><Link to='/booking'>booked Item</Link></li>
         <li className='font-semibold '><Link to='/contact'>Contact</Link></li>
         <li className='font-semibold '><Link to='/addservice'>AddService</Link></li>
         <li className='font-semibold '><Link to='/review'>Review</Link></li>

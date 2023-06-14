@@ -9,6 +9,8 @@ import SignUp from "../../Shared/SignUp/SignUp";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Comment from "../../Components/Comment/Comment";
 import Review from "../../Components/Review/Review";
+import Booking from "../../Components/Booking/Booking";
+import BookedItem from "../../Components/BookedItem/BookedItem";
 
 const router = createBrowserRouter([
     {
@@ -28,6 +30,15 @@ const router = createBrowserRouter([
                 path: '/details/:id',
                 element: <Details></Details>,
                 loader: ({ params }) => fetch(`http://localhost:5000/allservice/${params.id}`)
+            },
+            {
+                path: '/booking/:id',
+                element: <Booking></Booking>,
+                loader: ({ params }) => fetch(`http://localhost:5000/allservice/${params.id}`)
+            },
+            {
+                path: '/booking',
+                element: <BookedItem></BookedItem>
             }
             ,
             {
@@ -41,6 +52,7 @@ const router = createBrowserRouter([
                 element: <Comment></Comment>,
                 loader: ({ params }) => fetch(`http://localhost:5000/allservice/${params.id}`)
             },
+
             {
                 path: '/review',
                 element: <Review></Review>
