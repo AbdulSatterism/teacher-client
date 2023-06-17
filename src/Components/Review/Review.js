@@ -4,20 +4,32 @@ import ReviewList from './ReviewList';
 import { toast } from 'react-hot-toast';
 
 const Review = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
     const [review, setReview] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/comment?email=${user?.email}`)
-            .then(res => res.json())
+        fetch(`http://localhost:5000/comment?email=${user?.email}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    logOut()
+                }
+                return res.json();
+            })
             .then(data => setReview(data))
-    }, [user?.email])
+    }, [user?.email, logOut])
 
     const handleDelete = (id) => {
         const agree = window.confirm("Are you sure want to delete this comment");
         if (agree) {
             fetch(`http://localhost:5000/comment/${id}`, {
-                method: "DELETE"
+                method: "DELETE",
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('token')}`
+                }
             })
                 .then(res => res.json())
                 .then(data => {

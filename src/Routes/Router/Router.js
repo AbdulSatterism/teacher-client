@@ -28,17 +28,23 @@ const router = createBrowserRouter([
             },
             {
                 path: '/details/:id',
-                element: <Details></Details>,
+                element: <PrivateRoute>
+                    <Details></Details>
+                </PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/allservice/${params.id}`)
             },
             {
                 path: '/booking/:id',
-                element: <Booking></Booking>,
+                element: <PrivateRoute>
+                    <Booking></Booking>
+                </PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/allservice/${params.id}`)
             },
             {
                 path: '/booking',
-                element: <BookedItem></BookedItem>
+                element: <PrivateRoute>
+                    <BookedItem></BookedItem>
+                </PrivateRoute>
             }
             ,
             {
@@ -49,13 +55,17 @@ const router = createBrowserRouter([
             },
             {
                 path: '/comment/:id',
-                element: <Comment></Comment>,
+                element: <PrivateRoute>
+                    <Comment></Comment>
+                </PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/allservice/${params.id}`)
             },
 
             {
                 path: '/review',
-                element: <Review></Review>
+                element: <PrivateRoute>
+                    <Review></Review>
+                </PrivateRoute>
             },
             {
                 path: '/login',

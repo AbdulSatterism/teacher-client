@@ -4,24 +4,36 @@ import BookItemList from './BookItemList';
 import { toast } from 'react-hot-toast';
 
 const BookedItem = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
     const [booking, setBooking] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/booking?email=${user?.email}`)
-            .then(res => res.json())
+        fetch(`http://localhost:5000/booking?email=${user?.email}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    logOut()
+                }
+                return res.json();
+            })
             .then(data => {
                 setBooking(data)
-                // console.log(data)
+                // console.log('inside receve', data)
             })
-    }, [user?.email]);
+    }, [user?.email, logOut]);
 
     // console.log(booking)
     const handleDelete = (id) => {
         const agree = window.confirm("Are you sure want to cancel this service");
         if (agree) {
             fetch(`http://localhost:5000/booking/${id}`, {
-                method: "DELETE"
+                method: "DELETE",
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('token')}`
+                }
             })
                 .then(res => res.json())
                 .then(data => {

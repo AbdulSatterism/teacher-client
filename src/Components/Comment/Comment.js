@@ -24,7 +24,8 @@ const Comment = () => {
         fetch('http://localhost:5000/comment', {
             method: "POST",
             headers: {
-                "content-type": "application/json"
+                "content-type": "application/json",
+                authorization: `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify(review)
         })
