@@ -5,7 +5,7 @@ import teacher from '../../Images/teacher/teacher.png'
 const Carousel = () => {
 
     return (
-        <div className="hero hero-content h-screen flex-col lg:flex-row-reverse bg-gradient-to-r from-sky-100 to-indigo-400 p-4">
+        <div className=" hero-content h-screen flex-col lg:flex-row-reverse bg-gradient-to-r from-sky-100 to-indigo-400 p-4">
             <div className='w-1/2 '>
                 <img src={teacher} className="" alt='' />
             </div>
