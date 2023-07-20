@@ -23,7 +23,7 @@ const Login = () => {
                 setError('');
                 form.reset()
                 // for jwt 
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://teacher-server.onrender.com/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

@@ -8,7 +8,7 @@ const BookedItem = () => {
     const [booking, setBooking] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/booking?email=${user?.email}`, {
+        fetch(`https://teacher-server.onrender.com/booking?email=${user?.email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('token')}`
             }
@@ -29,7 +29,7 @@ const BookedItem = () => {
     const handleDelete = (id) => {
         const agree = window.confirm("Are you sure want to cancel this service");
         if (agree) {
-            fetch(`http://localhost:5000/booking/${id}`, {
+            fetch(`https://teacher-server.onrender.com/booking/${id}`, {
                 method: "DELETE",
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('token')}`

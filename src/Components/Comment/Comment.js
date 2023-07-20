@@ -21,7 +21,7 @@ const Comment = () => {
             comment: comment
         }
         // console.log(review)
-        fetch('http://localhost:5000/comment', {
+        fetch('https://teacher-server.onrender.com/comment', {
             method: "POST",
             headers: {
                 "content-type": "application/json",

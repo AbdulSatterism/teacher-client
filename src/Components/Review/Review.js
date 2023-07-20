@@ -8,7 +8,7 @@ const Review = () => {
     const [review, setReview] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/comment?email=${user?.email}`, {
+        fetch(`https://teacher-server.onrender.com/comment?email=${user?.email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('token')}`
             }
@@ -25,7 +25,7 @@ const Review = () => {
     const handleDelete = (id) => {
         const agree = window.confirm("Are you sure want to delete this comment");
         if (agree) {
-            fetch(`http://localhost:5000/comment/${id}`, {
+            fetch(`https://teacher-server.onrender.com/comment/${id}`, {
                 method: "DELETE",
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('token')}`

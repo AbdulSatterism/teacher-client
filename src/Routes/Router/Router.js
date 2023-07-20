@@ -11,6 +11,7 @@ import Comment from "../../Components/Comment/Comment";
 import Review from "../../Components/Review/Review";
 import Booking from "../../Components/Booking/Booking";
 import BookedItem from "../../Components/BookedItem/BookedItem";
+import Blogs from "../../Components/Blog/Blogs";
 
 const router = createBrowserRouter([
     {
@@ -24,21 +25,21 @@ const router = createBrowserRouter([
             {
                 path: '/allservice',
                 element: <AllService></AllService>,
-                loader: () => fetch(`http://localhost:5000/allservice`)
+                loader: () => fetch(`https://teacher-server.onrender.com/allservice`)
             },
             {
                 path: '/details/:id',
                 element: <PrivateRoute>
                     <Details></Details>
                 </PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/allservice/${params.id}`)
+                loader: ({ params }) => fetch(`https://teacher-server.onrender.com/allservice/${params.id}`)
             },
             {
                 path: '/booking/:id',
                 element: <PrivateRoute>
                     <Booking></Booking>
                 </PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/allservice/${params.id}`)
+                loader: ({ params }) => fetch(`https://teacher-server.onrender.com/allservice/${params.id}`)
             },
             {
                 path: '/booking',
@@ -58,7 +59,7 @@ const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <Comment></Comment>
                 </PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/allservice/${params.id}`)
+                loader: ({ params }) => fetch(`https://teacher-server.onrender.com/allservice/${params.id}`)
             },
 
             {
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <Review></Review>
                 </PrivateRoute>
+            },
+            {
+                path: '/blog',
+                element: <Blogs></Blogs>
             },
             {
                 path: '/login',

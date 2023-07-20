@@ -6,7 +6,7 @@ const AddService = () => {
 
     const handleSubmit = event => {
         event.preventDefault()
-        fetch('http://localhost:5000/services', {
+        fetch('https://teacher-server.onrender.com/services', {
             method: "POST",
             headers: {
                 "content-type": "application/json",

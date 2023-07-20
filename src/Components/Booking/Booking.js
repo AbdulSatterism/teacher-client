@@ -23,7 +23,7 @@ const Booking = () => {
             phone: phone
         }
         // console.log(bookingService)
-        fetch('http://localhost:5000/booking', {
+        fetch('https://teacher-server.onrender.com/booking', {
             method: "POST",
             headers: {
                 "content-type": "application/json",
